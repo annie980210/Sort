@@ -35,7 +35,7 @@ void insertionSortRec(Rectangles * arr, int length)
 	}
 }
 
-/*
+
 int middleValue3(DT * arr, int one, int two, int three)
 {
 	if (arr[one] < arr[two])
@@ -121,8 +121,107 @@ void quickSort(DT *arr, int left, int right)
 }
 
 void quickSortRec(Rectangles * arr, int left, int right);
-void iterativeMergeSort(DT * arr, int length);
+
+void Merge(DT * str, int nLow, int nMid, int nHigh) 
+{ 
+    DT buf[10] = {0,}; 
+    int i,j,k; 
+
+    printf("[Merge Test] %s\n",str); 
+
+    i = nLow; j = nMid+1; k = nLow; 
+    while (i <= nMid && j <= nHigh) 
+    { 
+        if (str[i] < str[j]) 
+            buf[k++] = str[i++]; 
+        else 
+            buf[k++] = str[j++]; 
+    } 
+
+    while (i <= nMid) 
+        buf[k++] = str[i++]; 
+
+    while (j <= nHigh) 
+        buf[k++] = str[j++]; 
+
+    for (i=nLow; i<=nHigh; i++) 
+    { 
+        str[i] = buf[i]; 
+    } 
+
+    printf("%s\n",str); 
+} 
+
+void iterativeMergeSort(DT * str, int nLow, int nHigh) 
+{ 
+    int nMid; 
+
+    nMid = (nLow + nHigh) / 2; 
+    if (nLow < nHigh) 
+    { 
+        MergeSort(str, nLow, nMid); 
+        MergeSort(str, nMid+1, nHigh); 
+        Merge(str, nLow, nMid, nHigh); 
+    } 
+    else 
+    { 
+        return; 
+    } 
+}
+
 void iterativeMergeSortRec(Rectangles * arr, int length);
-void heapSort(DT * arr, int length);
+
+void BuildMinHeap(DT values[],int from, int to){
+ int left,right,go,idx;
+ DT temp;
+ if(to-from<2){
+  return;
+ }
+ while(from>=0){
+  count++;
+  idx = from;
+  count++;
+  go = from;
+  count++;
+  while(go*2+1<to){
+   count++;
+   left = go * 2 + 1;
+   count++;
+   right = go * 2 + 2;
+   count++;
+   go = left;
+   count++;
+   if(right<to && values[right]<=values[left]){
+    count++;
+    go = right;
+    count++;
+   }
+   if(values[go]<values[idx]){
+    count++;
+    SWAP(values[idx],values[go],temp);
+    idx=go;
+    count++;
+   }else break;
+  }
+  count++;
+  --from;
+  count++;
+ }
+ count++;
+}
+
+void heapSort(DT values[],int c){
+ DT temp;
+ BuildMinHeap(values,c/2-1,c);
+ while(c>0){
+  count++;
+  --c;
+  count++;
+  SWAP(values[0],values[c],temp);
+  BuildMinHeap(values,0,c);
+ }
+ count++;
+}
+
 void heapSortRec(Rectangles * arr, int length);
-*/
+
